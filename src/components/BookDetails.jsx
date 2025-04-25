@@ -35,8 +35,8 @@ const BookDetails = () => {
     addToLocalStorage(id)
   }
 
-  const handleWistList = () => {
-    addWishListToLocalStorage(book)
+  const handleWistList = (id) => {
+    addWishListToLocalStorage(id)
   }
   return (
     <div className="max-w-5xl mx-auto py-[80px] px-4 grid md:grid-cols-2 gap-8 ">
@@ -86,7 +86,7 @@ const BookDetails = () => {
             Read
           </button>
           <button
-          onClick={handleWistList}
+          onClick={() => handleWistList(id)}
           className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md font-semibold">
             Wishlist
           </button>
