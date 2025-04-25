@@ -35,7 +35,7 @@ const addWishListToLocalStorage = (id) => {
   if (wishList.includes(id)) {
     alert("Item already exists in the wishlist.");
   } else {
-    wishList.push(book);
+    wishList.push(id);
     localStorage.setItem("wishList", JSON.stringify(wishList));
     alert("Successfully added to the Wishlist!");
   }
