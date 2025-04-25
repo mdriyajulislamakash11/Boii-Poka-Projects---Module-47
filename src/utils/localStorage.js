@@ -8,14 +8,14 @@ const getStoredBook = () => {
     }
 };
 
-const addToLocalStorage = (book) => {
+const addToLocalStorage = (id) => {
     const bookReadList = getStoredBook()
-    const isExist = bookReadList.find((item) => item.bookId === book.bookId);
+    const isExist = bookReadList.find((item) => item.bookId === id);
 
     if(isExist){
         alert("aldeary exist")
     }else{
-        bookReadList.push(book);
+        bookReadList.push(id);
         localStorage.setItem("readList", JSON.stringify(bookReadList))
         alert("Book added to Read List!");
     }

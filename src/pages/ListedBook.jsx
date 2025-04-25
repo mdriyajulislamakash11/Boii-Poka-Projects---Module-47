@@ -1,18 +1,26 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { getStoredBook } from "../utils/localStorage";
+import { useLoaderData } from "react-router-dom";
 
 const ListedBook = () => {
+  const [readList, setReadList] = useState([]);
+  const data = useLoaderData();
 
-    const {bookId} = useParams()
-    
-
-
-
-    return (
-        <div>
-            hii list
-        </div>
+  useEffect(() => {
+    const readList = getStoredBook();
+    const ConvertedStoredBooks = readList.map((id) => parseInt(id));
+    const myReadList = data.filter(
+      (book) => book.bookId == ConvertedStoredBooks.includes(book.bookId)
     );
+    setReadList(myReadList)
+  }, []);
+
+
+
+
+  return <div>
+    
+  </div>;
 };
 
 export default ListedBook;

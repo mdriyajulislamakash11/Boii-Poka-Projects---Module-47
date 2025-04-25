@@ -31,8 +31,8 @@ const BookDetails = () => {
   } = book;
 
 
-  const handleReadList = () => {
-    addToLocalStorage(book)
+  const handleReadList = (id) => {
+    addToLocalStorage(id)
   }
 
   const handleWistList = () => {
@@ -81,7 +81,7 @@ const BookDetails = () => {
         {/* Buttons */}
         <div className="flex gap-4 mt-6">
           <button
-          onClick={handleReadList}
+          onClick={() => handleReadList(id)}
           className="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-md font-semibold">
             Read
           </button>
