@@ -29,15 +29,23 @@ const ListedBook = () => {
     setWishlist(myWishList);
   }, [data]);
 
-  const handleSortedBy = (typeBy) => {
+  const handleSortedBy = (typeBy, listType) => {
     setSort(typeBy);
-    if (typeBy == "pages") {
-      const pages = [...readList].sort((a, b) => a.totalPages - b.totalPages);
-      setReadList(pages);
-    }
-    if (typeBy === "rating") {
-      const rating = [...readList].sort((a, b) => a.rating - b.rating);
-      setReadList(rating);
+    let sortedList;
+    if (listType === "read") {
+      if (typeBy === "pages") {
+        sortedList = [...readList].sort((a, b) => a.totalPages - b.totalPages);
+      } else if (typeBy === "rating") {
+        sortedList = [...readList].sort((a, b) => a.rating - b.rating);
+      }
+      setReadList(sortedList);
+    } else if (listType === "wish") {
+      if (typeBy === "pages") {
+        sortedList = [...wishList].sort((a, b) => a.totalPages - b.totalPages);
+      } else if (typeBy === "rating") {
+        sortedList = [...wishList].sort((a, b) => a.rating - b.rating);
+      }
+      setWishlist(sortedList);
     }
   };
 
@@ -46,7 +54,7 @@ const ListedBook = () => {
       <h2 className="text-3xl font-bold py-12 bg-slate-100 text-center my-2">
         Books
       </h2>
-      {/* sort dropdon menu  */}
+      {/* sort dropdown menu */}
       <div className="flex justify-center h-52">
         <div className="dropdown dropdown-hover">
           <div
@@ -54,17 +62,17 @@ const ListedBook = () => {
             role="button"
             className="btn m-1 bg-green-600 text-white font-semibold"
           >
-            Sort By - {sort ? sort : ""}
+            Sort By - {sort ? sort : "Select"}
           </div>
           <ul
             tabIndex={0}
             className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow"
           >
             <li className="bg-slate-200">
-              <a onClick={() => handleSortedBy("pages")}>Pages</a>
+              <a onClick={() => handleSortedBy("pages", "read")}>Pages</a>
             </li>
             <li className="bg-slate-200">
-              <a onClick={() => handleSortedBy("rating")}>Ratings</a>
+              <a onClick={() => handleSortedBy("rating", "read")}>Ratings</a>
             </li>
           </ul>
         </div>
